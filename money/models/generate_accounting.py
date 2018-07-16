@@ -81,9 +81,14 @@ class MoneyInvoice(models.Model):
             if not partner_account_id:
                 raise UserError(u'请配置%s的会计科目' % (partner_cat.name))
             if invoice.category_id.type == 'income':
+
+                #zt 更改销售发货单会计科目为在建工程
+                zt_temp_account = partner_account_id
+                if zt_temp_account == 6:    #将应收账款-6 更改为在建工程-24
+                    zt_temp_account = 24
                 vals.update({'vouch_obj_id': vouch_obj.id, 'partner_credit': invoice.partner_id.id, 'name': invoice.name, 'string': invoice.note or '',
                              'amount': invoice.amount, 'credit_account_id': invoice.category_id.account_id.id, 'partner_debit': invoice.partner_id.id,
-                             'debit_account_id': partner_account_id, 'sell_tax_amount': invoice.tax_amount or 0,
+                             'debit_account_id': zt_temp_account, 'sell_tax_amount': invoice.tax_amount or 0,
                              'credit_auxiliary_id': invoice.auxiliary_id.id, 'currency_id': invoice.currency_id.id or '',
                              'rate_silent': self.env['res.currency'].get_rate_silent(self.date, invoice.currency_id.id) or 0,
                              })

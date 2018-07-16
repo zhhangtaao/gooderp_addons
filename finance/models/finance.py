@@ -935,7 +935,7 @@ class WizardAccountAddChild(models.TransientModel):
                 }
             }
 
-        default_child_step = self.env['ir.values'].get_default('finance.config.settings', 'default_child_step')
+        default_child_step = 3 #self.env['ir.values'].get_default('finance.config.settings', 'default_child_step')
         if self.account_code:
             self.full_account_code = "%s%s"%(self.parent_code, self.account_code)
 

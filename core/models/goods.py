@@ -117,5 +117,6 @@ class Goods(models.Model):
 
     _sql_constraints = [
         ('name_uniq', 'unique(name)', '商品不能重名'),
-        ('conversion_no_zero', 'check(conversion != 0)', '商品的转化率不能为0')
+        ('conversion_no_zero', 'check(conversion != 0)', '商品的转化率不能为0'),
+        ('code_uniq', 'unique(code)', '产品编号不能重复')
     ]
