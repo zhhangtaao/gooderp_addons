@@ -84,8 +84,10 @@ class MoneyInvoice(models.Model):
 
                 #zt 更改销售发货单会计科目为在建工程
                 zt_temp_account = partner_account_id
-                if zt_temp_account == 6:    #将应收账款-6 更改为在建工程-24
+                if zt_temp_account == 6:    #将应收账款-6 更改为在建工程-24 海伏
                     zt_temp_account = 24
+                if zt_temp_account == 7:    #将应收账款-7 更改为在建工程-26 电匠
+                    zt_temp_account = 26
                 vals.update({'vouch_obj_id': vouch_obj.id, 'partner_credit': invoice.partner_id.id, 'name': invoice.name, 'string': invoice.note or '',
                              'amount': invoice.amount, 'credit_account_id': invoice.category_id.account_id.id, 'partner_debit': invoice.partner_id.id,
                              'debit_account_id': zt_temp_account, 'sell_tax_amount': invoice.tax_amount or 0,
