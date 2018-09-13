@@ -65,7 +65,7 @@
             				    <field name='address_id'
             				        options="{'no_open': True, 'no_create': True}"/>
             				    <field name='mobile'/>
-            					<field name='user_id'
+            					<field name='user_id' readonly="1"
                                        options="{'no_open': True, 'no_create': True}"/>
             					<field name='date'/>
             					<field name='warehouse_id'/>
@@ -112,6 +112,7 @@
 										<field name="discount_amount" groups='sell.sell_discount_groups'/>
                             			<field name="amount"/>
 										<field name="received_amount"/>
+										<field name="net_weight"/>
                         			</group>
                         			<group>
 										<field name="pre_receipt"/>

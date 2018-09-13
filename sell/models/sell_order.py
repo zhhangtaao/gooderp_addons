@@ -79,6 +79,22 @@ class SellOrder(models.Model):
         for order in self:
             order.delivery_count = len([deli for deli in order.delivery_ids if not deli.is_return])
             order.return_count = len([deli for deli in order.delivery_ids if deli.is_return])
+    
+    @api.one
+    @api.depends('partner_id','partner_id.responsible_id')
+    def _get_sell_user(self):
+        '''计算销售单据的业务员，不允许修改'''
+        if self.partner_id:
+            if self.partner_id.responsible_id:
+                self.user_id = self.partner_id.responsible_id
+            else:
+                self.user_id = self._uid
+
+    @api.one
+    @api.depends('line_ids.goods_id', 'line_ids.quantity')
+    def _compute_net_weight(self):
+        '''计算净重合计'''
+        self.net_weight = sum(line.goods_id.net_weight * line.quantity for line in self.line_ids)
 
     partner_id = fields.Many2one('partner', u'客户',
                                  ondelete='restrict', states=READONLY_STATES,
@@ -93,9 +109,9 @@ class SellOrder(models.Model):
     user_id = fields.Many2one(
         'res.users',
         u'销售员',
-        ondelete='restrict',
+        ondelete='restrict',store=True,
         states=READONLY_STATES,
-        default=lambda self: self.env.user,
+        computer='_get_sell_user',
         help=u'单据经办人',
     )
     date = fields.Date(u'单据日期',
@@ -194,6 +210,8 @@ class SellOrder(models.Model):
         readonly=True,
         copy=False,
         help=u'输入预收款确认时产生的预收款单')
+    net_weight = fields.Float(
+        string=u'净重合计', compute='_compute_net_weight', store=True)
 
     @api.onchange('address_id')
     def onchange_partner_address(self):
