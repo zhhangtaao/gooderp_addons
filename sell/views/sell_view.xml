@@ -20,6 +20,7 @@
 					<field name="received_amount"/>
 					<field name='currency_id'
 						   groups='finance.group_multi_currency'/>
+					<field name="x_state"/>
 					<field name="ref"/>
             	</tree>
         	</field>
@@ -71,6 +72,7 @@
             					<field name='warehouse_id'/>
             				</group>
             				<group>
+								<field name="x_state"/>
 							    <field name="ref"/>
             					<field name='delivery_date'/>
             					<field name='type' widget='radio'/>

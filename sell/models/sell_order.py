@@ -22,7 +22,9 @@ class SellOrder(models.Model):
     _description = u'销货订单'
     _inherit = ['mail.thread']
     _order = 'date desc, id desc'
-
+    x_state = fields.Selection(selection= [(1, "货×  票×  全款×"),(2, "货×  票×  全款√") , (3, "货×  票√  全款×"), (4,"货×  票√  全款√"),(5,"货√  票×  全款×"),
+                                           (6,"货√  票×  全款√"), (7,"货√  票√  全款×"),(8,"货√  票√  全款√ (已完结)")],string=u'自定义状态',required=True
+                               )
     @api.one
     @api.depends('line_ids.subtotal', 'discount_amount')
     def _compute_amount(self):
