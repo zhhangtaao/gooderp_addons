@@ -76,7 +76,7 @@
             <t t-set="data_report_dpi" t-value="110"/>
             <t t-set="data-report_format" t-value='A5' />
             <t t-foreach='docs' t-as='o' >
-                    <div class='page' style="font-size:24;">
+                    <div class='page' style="font-size:15;">
                         <div class='row' >
                             <div class='oe_structure' />
                             <div class='row'>
@@ -107,9 +107,9 @@
                             <thead>
                                 <tr>
                                     <td rowspan='2' height='80px' class='col-xs-2 text-center' style="vertical-align:middle;">摘要</td>
-                                    <td rowspan='2' class='col-xs-2 text-center' style="vertical-align:middle;">会计科目</td>
-                                    <td colspan='12' height='40px' class='col-xs-4 text-center'>借方</td>
-                                    <td colspan='12' class='col-xs-4 text-center'>贷方</td>
+                                    <td rowspan='2' class='col-xs-6 text-center' style="vertical-align:middle;">会计科目</td>
+                                    <td colspan='12' height='40px' class='col-xs-2 text-center'>借方</td>
+                                    <td colspan='12' class='col-xs-2 text-center'>贷方</td>
                                 </tr>
                                 <tr>
                                     <td style="vertical-align:middle;">十</td>
@@ -141,7 +141,7 @@
                             <tbody class='text-center'>
                                 <t t-foreach='o.line_ids' t-as='l'>
                                     <tr>
-                                        <td style="vertical-align:middle;" height='80px'>
+                                        <td style="vertical-align:middle;" height='40px'>
                                             <span t-field='l.name' />
                                         </td>
                                         <td style="vertical-align:middle;">
@@ -231,7 +231,7 @@
                                     </tr>
                                 </t>
                                 <tr>
-                                    <td class='col-xs-4' height='80px' colspan = '2' style="vertical-align:middle;">
+                                    <td class='col-xs-4' height='40px' colspan = '2' style="vertical-align:middle;">
                                         <span>合计:</span>
                                         <span t-esc='rmb_upper(o.amount_text)' />
                                     </td>
