@@ -13,6 +13,7 @@
                     <field name='name' filter_domain="[('name','ilike',self)]"/>
                     <field name='date'/>
                     <field name='period_id'/>
+                    <field name="line_ids" widget="relation_sublist" options="{'field': 'name'}"/>
                     <separator/>
                     <filter string="本期"
                             domain="[('date','&gt;=',(context_today()).strftime('%%Y-%%m-01')),
