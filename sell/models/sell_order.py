@@ -17,6 +17,18 @@ READONLY_STATES = {
 }
 
 
+class ProjectNumber(models.Model):
+    _name = 'project.number'
+    _description = u'项目号管理'
+
+    code = fields.Char(u'项目号', required=True)
+    name = fields.Char(u'项目名称', required=True)
+
+    note = fields.Text(u'备注', help=u'此字段用于详细描述该可选值的意义，或者使用一些特殊字符作为程序控制的标识')
+    open = fields.Boolean(u'项目进行中（允许领料）', default=True)
+    active = fields.Boolean(u'启用', default=True)
+
+
 class SellOrder(models.Model):
     _name = 'sell.order'
     _description = u'销货订单'
