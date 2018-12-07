@@ -1,6 +1,56 @@
 <?xml version="1.0"?>
 <openerp>
     <data>
+    	<!--项目号tree视图-->
+    	<record id='project_number_tree' model='ir.ui.view'>
+        	<field name='name'>project.number.tree</field>
+        	<field name='model'>project.number</field>
+        	<field name='arch' type='xml'>
+                <tree string='项目号管理'>
+            		<field name='code'/>
+            		<field name='name'/>
+            		<field name='open'/>
+            		<field name='note'/>
+            	</tree>
+        	</field>
+    	</record>
+
+		<record id="project_number_search" model="ir.ui.view">
+            <field name="name">project.number.search</field>
+            <field name="model">project.number</field>
+            <field name="arch" type="xml">
+                <search string="项目号管理">
+            		<field name='code'/>
+            		<field name='name'/>
+            		<field name='open'/>
+            		<field name='note'/>
+                </search>
+            </field>
+        </record>
+
+    	<record id='sell_delivery_form' model='ir.ui.view'>
+        	<field name='name'>project.number.form</field>
+        	<field name='model'>project.number</field>
+        	<field name='arch' type='xml'>
+            	<form string="项目号管理">
+                <sheet>
+                    <div class="oe_left">
+                        <group>
+                            <group>
+                                <field name="code" required="1"/>
+                                <field name="note" required="1"/>
+                                <field name="open"/>
+                            </group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                    </div>
+                </sheet>
+            </form>
+        	</field>
+    	</record>
+
     	<!--销货订单tree视图-->
     	<record id='sell_order_tree' model='ir.ui.view'>
         	<field name='name'>sell.order.tree</field>
@@ -687,6 +737,13 @@
         </record>
 
     	<!--销货订单，销售发货单action-->
+		<record model="ir.actions.act_window" id="project_number_action">
+			<field name="name">项目号管理</field>
+			<field name="res_model">project.number</field>
+			<field name="view_mode">tree,from</field>
+        	<field name='view_id' ref='project_number_tree'/>
+		</record>
+
     	<record id='sell_order_action' model='ir.actions.act_window'>
         	<field name='name'>销货订单</field>
         	<field name='res_model'>sell.order</field>
@@ -840,6 +897,8 @@
         <menuitem id="sell_adjust_menu" name='销售变更单' action="sell_adjust_action"
             parent="sell_order_menu_root" sequence="4"
             groups='sell.sell_groups'/>
+        <menuitem id="project_number_menu" name='项目号管理' action="project_number_action"
+            parent="sell_order_menu_root" sequence="5" />
 
 		<!-- 仓库菜单下增加菜单 -->
 		<menuitem id='sell_wh_delivery_menu' name='销售发货单' action='sell_delivery_action'
