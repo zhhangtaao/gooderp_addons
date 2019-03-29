@@ -33,7 +33,7 @@ class MoneyOrder(models.Model):
     _inherit = ['mail.thread']
     _order = 'id desc'
 
-    x_invoiceType = fields.Selection(string = "发票类型",selection = [(1, "普票"),(2, "16%专票"),(3, "6%专票"),(4, "无发票")])
+    x_invoiceType = fields.Selection(string = "发票类型",selection = [(1, "普票"),(2, "16%专票"),(3, "6%专票"),(4, "无发票"),(5, "13%专票")])
     x_invoiceReceived = fields.Boolean(string = "已收到")
 
     TYPE_SELECTION = [
