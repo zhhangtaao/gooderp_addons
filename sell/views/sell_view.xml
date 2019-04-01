@@ -67,7 +67,7 @@
                     <field name='state'/>
 					<field name="_approve_state"/>
             		<field name='goods_state'/>
-					<field name="received_amount"/>
+					<field name="received_amount" sum="合计"/>
 					<field name='currency_id'
 						   groups='finance.group_multi_currency'/>
 					<field name="x_state"/>
