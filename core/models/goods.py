@@ -74,6 +74,8 @@ class Goods(models.Model):
             default = {}
         if not default.has_key('name'):
             default.update(name=_('%s (copy)') % (self.name))
+        if self.code:
+            default.update(code=_('%s (copy)') % (self.code))
         return super(Goods, self).copy(default=default)
 
     code = fields.Char(u'编号')
