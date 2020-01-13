@@ -9,18 +9,17 @@
             <field name="arch" type="xml">
                 <tree string="采购入库单" colors='blue:state == "draft";lightgray:state == "cancel"'>
                     <field name='date'/>
-            		<field name='name'/>
+                    <field name='name'/>
                     <field name="order_id" groups='buy.buy_groups'/>
                     <field name="partner_id"/>
                     <field name="user_id"/>
                     <field name="amount" sum="总金额" groups='buy.group_buy'/>
-            		<field name='payment' groups='buy.group_buy'/>
-            		<field name='date_due'/>
-                    <field name='currency_id'
-                           groups='finance.group_multi_currency'/>
+                    <field name='payment' groups='buy.group_buy'/>
+                    <field name='date_due'/>
                     <field name='state'/>
                     <field name="_approve_state"/>
-            		<field name='money_state'/>
+                    <field name='money_state'/>
+                    <field name="warehouse_dest_id"/>
                 </tree>
             </field>
         </record>
